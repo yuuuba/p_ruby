@@ -14,9 +14,7 @@ def prime_number(num)
 
   if valid_number?(num)
     (2..Math.sqrt(num)).each do |i|
-      if num % i == 0
-        is_prime = false
-      end
+      is_prime = false if num % i == 0
     end
   else
     is_prime = false
@@ -33,13 +31,13 @@ def num_sum(ary)
   ary.sum
 end
 
-num = [2,3]
+num = [2, 3]
 num_sum(num)
 
 def factorial(num)
   box = []
   if num >= 1
-    num.downto(1) {|n| box << n }
+    num.downto(1) { |n| box << n }
     box.inject(&:*)
   else
     1
@@ -69,15 +67,14 @@ def bubble_sort(ary)
   #     elsif val > num
   #       box.unshift(num)
 
-  #gpt
+  # gpt
   (array.size - 1).times do
     (0...(array.size - 1)).each do |i|
-      if array[i] > array[i + 1]
-        array[i], array[i + 1] = array[i + 1], array[i]
-      end
+      array[i], array[i + 1] = array[i + 1], array[i] if array[i] > array[i + 1]
     end
   end
 end
+
 # ユニークな文字列
 # 与えられた文字列に含まれるすべての文字がユニーク（重複なし）であるかどうかを
 # 判定するプログラムを作成してください。ユニークであればtrue、そうでなければfalseを返します。
@@ -96,24 +93,31 @@ end
 def count_char(str, char)
   str.count(char)
 end
-# 1. 素数のリスト
-# 引数として与えられた数 n までの素数のリストを返す関数 primes_up_to(n) を作成してください。
 
-# 2. 二分探索
-# ソートされた配列とターゲットとなる数を引数に取り、
-# その数が配列内に存在するかを判定する二分探索の関数
-# binary_search(array, target) を作成してください。
-# 存在すれば true、存在しなければ false を返します。
+# 問題 19: 配列を指定した数で分割
+# 整数の配列と正の整数 n が与えられたとき、
+# 配列を n 個ずつのチャンクに分割して2次元配列を返すプログラムを作成してください。
+# 最後のチャンクが n 個未満になる場合は、そのままにしてください。
+# 例えば、[1, 2, 3, 4, 5, 6, 7] と n = 3 が与えられた場合、[[1, 2, 3], [4, 5, 6], [7]] を返します。
 
-# 3. 文字列のアナグラム判定
-# 二つの文字列がアナグラム（同じ文字を使って別の単語を作ること）であるかを判定する関数
-#  anagram?(str1, str2) を作成してください。
-#  アナグラムであれば true、そうでなければ false を返します。
+class Division
+  def initialize(ary, num)
+    @ary = ary
+    @num = num
+  end
 
-# 4. 重複のない配列の作成
-# 引数として与えられた配列から重複を取り除いた新しい配列を返す関数
-#  unique_array(array) を作成してください。
+  def division_check
+    after_ary = []
+    @ary.each_slice(@num) { |n| after_ary << n }
+    after_ary
+  end
+end
 
-# 5. 文字列内の単語数カウント
-# 引数として与えられた文字列内に含まれる単語の数をカウントする関数
-# count_words(string) を作成してください。単語はスペースで区切られたものとします。
+ary = [1, 2, 3, 4, 5, 6, 7]
+num = 3
+
+test1 = Division.new(ary, num)
+test1.division_check
+
+# 問題 20: 複数の配列の共通部分を返す
+# 複数の整数配列が与えられたとき、それらすべてに共通する要素を配列として返すプログラムを作成してください。

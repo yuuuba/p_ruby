@@ -19,9 +19,15 @@ describe 'Division' do
       end
     end
   end
+end
 
-  # context 'の時' do
-  #   it 'を返す' do
-  #   end
-  # end
+describe '#common_elements' do
+  context '特定の3つの配列を渡された時' do
+    it '[1,2]を返す' do
+      ary1 = [1, 2, 3, 4, 5]
+      ary2 = [1, 2, 5, 78]
+      ary3 = [1, 2, 6, 7, 4]
+      expect(common_elements(ary1, ary2, ary3)).to eq [1, 2]
+    end
+  end
 end

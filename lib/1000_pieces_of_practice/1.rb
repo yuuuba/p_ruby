@@ -120,4 +120,92 @@ test1 = Division.new(ary, num)
 test1.division_check
 
 # 問題 20: 複数の配列の共通部分を返す
-# 複数の整数配列が与えられたとき、それらすべてに共通する要素を配列として返すプログラムを作成してください。
+# 複数の整数配列が与えられたとき、
+# それらすべてに共通する要素を配列として返すプログラムを作成してください。
+def common_elements(*ary)
+  ary.reduce(&:&)
+end
+
+ary1 = [1, 2, 3, 4, 5]
+ary2 = [1, 2, 5, 78]
+ary3 = [1, 2, 6, 7, 4]
+
+common_elements(ary1, ary2, ary3)
+
+# 問題26: 配列の合計が特定の数になる組み合わせ
+# 整数の配列とターゲットとなる整数が与えられたとき、
+# 配列の要素の中から2つの数を選んでその合計がターゲットと一致するか
+# どうかを判定するプログラムを作成してください。
+# NOTE: 配列など複数の要素がある時のtrue,falseを返すときは「any?」で全体調べれる、combinationメソッド
+
+def ary_combination(ary)
+  target = 6
+  ary.combination(2).to_a.each do |combi|
+    combi.sum.eql?(target)
+  end
+  # ary.combination(2).any? { |combi| combi.sum.eql?(target) }
+end
+
+ary = [1, 2, 3, 4, 5]
+p ary_combination(ary)
+
+# 問題31: 文字列のアナグラム判定
+# 与えられた2つの文字列がアナグラムかどうかを判定するプログラムを作成してください。
+# アナグラムの場合は true を、
+# そうでない場合は false を返します。大文字と小文字は区別しません。
+# 入力: "listen", "silent" → 出力: true
+# NOTE: 文字をそれぞれ比較かつ同じ文字数であれば同じ
+
+# def anagram(ary)
+#   first_str = ary[0].chars
+#   second_str = ary[1].chars
+#   first_str.each do |str|
+#     str.each do |s_str|
+#       str.any?.eql?(s_str)
+#     end
+#   end
+# end
+
+# ary = %w[listen silent]
+
+# 問題32: 文字列の圧縮
+
+# 文字列を圧縮して、連続する同じ文字をその文字と連続回数で表すプログラムを作成してください。
+# たとえば、"aaabbccccd" という文字列が与えられた場合、圧縮後は "a3b2c4d1" となります。
+
+# 例
+
+# 入力: "aabcccccaaa"
+# 出力: "a2b1c5a3"
+# ただし、圧縮後の文字列が元の文字列よりも長くなる場合は、元の文字列をそのまま返してください。
+
+# chars,同じやつ削除、それを箱に入れる
+# 加工したやつeachで元の文字列に対して回す、
+# 元のやつに対してcount,
+
+def compress_string(str)
+  compressed = str.chars.uniq.map do |char|
+    "#{char}#{str.count(char)}"
+  end.join
+
+  compressed.length < str.length ? compressed : str
+end
+
+compress_string('aabcccccaaa')
+
+# 問題34: 文字列のキャピタライズ
+# 複数の単語で構成された文字列が与えられたとき、各単語の最初の文字だけを大文字にし、
+# 他の文字は小文字にして返すプログラムを作成してください。
+
+# 例
+# 入力: "hello world from ruby"
+# 出力: "Hello World From Ruby"
+# NOTE: 関係ないけどany?は真があれば直ちに真を返す、all?は要素が全部真で初めて真を返す
+
+def str_capitalize(str)
+  str.split.each do |after_str|
+    after_str.capitalize!
+  end
+end
+
+str_capitalize('hello world from ruby')

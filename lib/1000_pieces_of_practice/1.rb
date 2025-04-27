@@ -257,6 +257,51 @@ num_tally([1, 2, 2, 3, 3, 3])
 
 def max_palindrome(str)
   # strの文字列数をカウント、カウントした文字数から2までdowncaseで繰り返し
+  (str.length..2).to_a.reverse
   # その文字列とその文字列をrevberseしたものが同じか判定、
   # 同じであればその文字列をcountしたものを返す、最後までtrueがなければ1を返す
 end
+
+# 問題 46: 文字列の重複削除
+# 与えられた文字列から、同じ文字が連続している部分を削除してください。
+# 例えば、"aaabbbccc" なら "abc" になります。
+# 入力例:
+# "aaabbbccc"
+# 出力例:
+# "abc"
+def ud(str)
+  str.chars.uniq.join(',')
+end
+ud('aaabbbccc')
+# 問題 63: 文字列内の重複した単語を取り除く
+# 与えられた文字列内の単語が重複している場合、その重複を取り除いた新しい文字列を返すプログラムを作成してください。単語はスペースで区切られているものとします。
+
+# 入力例:
+# "apple orange banana apple grape orange"
+# 出力例:
+# "apple orange banana grape"
+
+def uniq_check(str)
+  str.split.uniq
+end
+
+# 問題 64: 文字列内で最も頻繁に出現する単語を返す
+# 与えられた文字列内で最も頻繁に出現する単語を返すプログラムを作成してください。
+# もし複数の単語が同じ回数出現する場合は、
+# その中で最もアルファベット順が早い単語を返してください。
+
+# 入力例:
+# "apple orange banana apple orange apple"
+# 出力例:
+# "apple"
+
+def frequently_appearing_word(str)
+  # 与えたれた単語を数える tally
+  # それが多いものを出力hashのキーが数字が大きいものを持ってくる、複数あればvalueをsortして最初の値を出力もし同じ数があればそこでsortしてfirstのものを出力
+  # result = str.split.tally.invert.max
+  # result[1]
+  counts = str.split.tally
+  max_count = counts.values.max
+  counts.select { |_k, v| v == max_count }.keys.min
+end
+p frequently_appearing_word('apple orange banana apple orange apple')

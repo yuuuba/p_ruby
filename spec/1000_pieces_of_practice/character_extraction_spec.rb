@@ -1,4 +1,4 @@
-require_relative '../../lib/1000_pieces_of_practice/1'
+require_relative '../../lib/paiza/C/character_extraction'
 
 describe 'Division' do
   describe '#division_check' do

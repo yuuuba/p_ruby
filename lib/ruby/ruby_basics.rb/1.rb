@@ -1,4 +1,4 @@
-# ①変数、定数、if unless case,繰り返し(whileとかuntile loop break next)、timesブロック、コマンド入力受付、多重代入、代入演算子とか細かいやつ（-=,nilガード）,例外、ブロック、module,組み込みライブラリNumeric,str,ary,simbol,hash,IO ,File、Dir、Enconding,Time,Dateクラス、Proc、正規表現
+# ①変数、定数、if unless case,繰り返し(whileとかuntile loop break next)、
 
 # 変数
 グローバル、メソッド、クラス
